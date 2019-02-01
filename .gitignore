@@ -8,6 +8,7 @@
 
 
 .idea/
+.vscode/
 
 # User-specific stuff
 .idea/**/workspace.xml
