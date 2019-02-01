@@ -19,7 +19,7 @@ def disparity_filter(G, weight='weight'):
     return B
 
 
-def disparity_filter_alpha_cut(G, weight='weight', alpha_t=0.4, cut_mode='or'):
+def disparity_filter_alpha_cut(G, weight='weight', alpha_t=0.4):
     B = nx.Graph()  # Undirected case:
     for u, v, w in G.edges(data=True):
 
@@ -47,6 +47,9 @@ G = nx.read_edgelist('clean_dataset.csv', nodetype=str,
 G_alpha = disparity_filter(G)
 G_slim = disparity_filter_alpha_cut(G_alpha)
 
+# print(len(G_alpha.edges))
+# print(len(G_slim.edges))
+
 # cleaned edges sho treba da gi parsirash
 # vaka izgledaat a treba da se vo .csv so koloni
 # Source Target Weight
@@ -56,7 +59,7 @@ G_slim = disparity_filter_alpha_cut(G_alpha)
 slim_edges_list = [(item[0], item[1], item[2]['weight']) for item in G_slim.edges(data=True)]
 header_of_cleaned_edges_csv = ['Source', 'Target', 'Weight']
 
-with open('cleaned_edges.csv', mode='w', newline='') as outfile:
+with open('backboned_dataset.csv', mode='w', newline='') as outfile:
     csv_writer = csv.writer(outfile, delimiter=',', quotechar='|', quoting=csv.QUOTE_MINIMAL)
     csv_writer.writerow(header_of_cleaned_edges_csv)
     csv_writer.writerows(slim_edges_list)
