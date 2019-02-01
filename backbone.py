@@ -2,6 +2,7 @@ import networkx as nx
 import matplotlib.pyplot as plt
 import numpy as np
 from scipy import integrate
+import csv
 
 
 def disparity_filter(G, weight='weight'):
@@ -50,7 +51,16 @@ G_slim = disparity_filter_alpha_cut(G_alpha)
 # vaka izgledaat a treba da se vo .csv so koloni
 # Source Target Weight
 # ingr1  ingr2  weight_value
-print(G_slim.edges(data=True))
+# print(G_slim.edges(data=True))
+
+slim_edges_list = [(item[0], item[1], item[2]['weight']) for item in G_slim.edges(data=True)]
+header_of_cleaned_edges_csv = ['Source', 'Target', 'Weight']
+
+with open('cleaned_edges.csv', mode='w', newline='') as outfile:
+    csv_writer = csv.writer(outfile, delimiter=',', quotechar='|', quoting=csv.QUOTE_MINIMAL)
+    csv_writer.writerow(header_of_cleaned_edges_csv)
+    csv_writer.writerows(slim_edges_list)
+        
 
 # IGNORE DIS
 # edgewidth = [d['weight'] for (u, v, d) in G_slim.edges(data=True)]
