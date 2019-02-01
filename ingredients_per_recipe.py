@@ -15,11 +15,11 @@ def get_region_dict():
             regions_dict[region_name].append(
                 len(row[1:])
             )
-    
+
     return regions_dict
 
 
-def get_region_averages(regions_dict = {}):
+def get_region_averages(regions_dict={}):
     region_averages = []
     for key in regions_dict.keys():
         average_ingridients = round(np.average(regions_dict[key]), 2)
