@@ -19,7 +19,7 @@ def disparity_filter(G, weight='weight'):
     return B
 
 
-def disparity_filter_alpha_cut(G, weight='weight', alpha_t=0.4):
+def disparity_filter_alpha_cut(G, weight='weight', alpha_t=0.04):
     B = nx.Graph()  # Undirected case:
     for u, v, w in G.edges(data=True):
 
@@ -63,7 +63,6 @@ with open('backboned_dataset.csv', mode='w', newline='') as outfile:
     csv_writer = csv.writer(outfile, delimiter=',', quotechar='|', quoting=csv.QUOTE_MINIMAL)
     csv_writer.writerow(header_of_cleaned_edges_csv)
     csv_writer.writerows(slim_edges_list)
-        
 
 # IGNORE DIS
 # edgewidth = [d['weight'] for (u, v, d) in G_slim.edges(data=True)]
