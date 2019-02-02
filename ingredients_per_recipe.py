@@ -18,6 +18,11 @@ def get_region_dict():
 
     return regions_dict
 
+regions = get_region_dict()
+
+for item in regions.items():
+    print(item)
+
 
 def get_region_averages(regions_dict={}):
     region_averages = []
@@ -38,4 +43,4 @@ def write_region_averages():
         csv_writer.writerows(region_average_list)
 
 
-write_region_averages()  # execute writing to csv
+#write_region_averages()  # execute writing to csv
