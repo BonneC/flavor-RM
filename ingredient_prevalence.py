@@ -24,21 +24,17 @@ def get_ingredient_list():
     return list(set(ingredients))
 
 
-ingredients = get_ingredient_list()
-
-
 def get_region_dict(ingredients=[]):
     ingredients_dict = {}
-
     with open('dataset_region_recepies.csv', mode='r') as input_file:
         csv_reader = csv.reader(input_file, delimiter=',', quotechar='|')
+        rows = list(csv_reader)  # get the reader content
 
         for ingredient in ingredients:
             ingredients_dict.setdefault(ingredient, [])
-
             counter_per_country = 0
             region_name = 'African'
-            for row in csv_reader:
+            for row in rows:
                 if row[0] == region_name:
                     if ingredient in row:
                         counter_per_country += 1
@@ -56,6 +52,7 @@ def get_region_dict(ingredients=[]):
     return ingredients_dict
 
 
+ingredients = get_ingredient_list()
 ingredient_dict = get_region_dict(ingredients)
 
 for item in ingredient_dict.items():
