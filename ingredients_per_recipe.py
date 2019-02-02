@@ -19,6 +19,12 @@ def get_region_dict():
     return regions_dict
 
 
+regions = get_region_dict()
+
+for item in regions.items():
+    print(item)
+
+
 def get_region_averages(regions_dict={}):
     region_averages = []
     for key in regions_dict.keys():
