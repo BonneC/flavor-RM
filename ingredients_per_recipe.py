@@ -30,4 +30,12 @@ def get_region_averages(regions_dict={}):
     return region_averages
 
 
-print(get_region_averages(get_region_dict()))
+def write_region_averages():
+    region_average_list = get_region_averages(get_region_dict())
+    with open('region_avg_num_recipe.csv', mode='w', newline='') as outfile:
+        csv_writer = csv.writer(outfile, delimiter=',', quotechar='|', quoting=csv.QUOTE_MINIMAL)
+        csv_writer.writerow(['Region', 'Average Ingredients'])  # set header
+        csv_writer.writerows(region_average_list)
+
+
+write_region_averages()  # execute writing to csv
